@@ -83,7 +83,11 @@ int main() {
                             currentState = link.second / 4;
                             if (currentState == 101)
                             {
-                                sprintf(error, "We got final state!");
+                                if (currentSequence[0] == '\0') {
+                                    sprintf(error, "We got final state!");
+                                } else {
+                                    sprintf(error, "We got final state, but here is something in sequence.");
+                                }
                             }
                             break;
                         }
@@ -93,7 +97,13 @@ int main() {
                         }
                     }
                 } else {
-                    sprintf(error, "Wrong character: %c! Only 0, 1, * are allowed.", currentSequence[0]);
+                    if (currentSequence[0] == '\0')
+                    {
+                        if(currentState != 101)
+                            sprintf(error, "Sequence is empty. You are not in final state");
+                    } else {
+                        sprintf(error, "Wrong character: %c! Only 0, 1, * are allowed.", currentSequence[0]);
+                    }
                 }
             }
 
