@@ -1,0 +1,6 @@
+[requires]
+sfml/2.5.1
+imgui-sfml/2.5@bincrafters/stable
+
+[generators]
+cmake
