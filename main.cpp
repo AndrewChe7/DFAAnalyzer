@@ -9,7 +9,7 @@
 
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1280, 1024), "DFA analyzer");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "DFA analyzer");
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
     float scaleFactor = (float)sf::VideoMode::getDesktopMode().width / 1920;
@@ -52,7 +52,7 @@ int main() {
             ImGui::InputText("Check sequence", sequence, IM_ARRAYSIZE(sequence));
             if (ImGui::Button("Start"))
             {
-                strcpy_s(currentSequence, sequence);
+                strcpy(currentSequence, sequence);
                 currentState = 100;
             }
             ImGui::SameLine();
@@ -79,7 +79,7 @@ int main() {
                         if (link.first == currentTransition)
                         {
                             std::cout << "Transition: " << link.first << " " << link.second << std::endl;
-                            memmove_s(currentSequence, 1024, currentSequence + 1, 1023);
+                            memmove(currentSequence, currentSequence+1, 1023);
                             currentState = link.second / 4;
                             if (currentState == 101)
                             {
